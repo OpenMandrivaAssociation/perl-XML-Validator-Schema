@@ -1,23 +1,23 @@
 %define upstream_name    XML-Validator-Schema
 %define upstream_version 1.10
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 4
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	5
 
-Summary:    Validate XML with a subset of W3C XML Schema
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/XML/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Validate XML with a subset of W3C XML Schema
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/XML/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Carp)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Tree::DAG_Node)
-BuildRequires: perl(XML::Filter::BufferText)
-BuildRequires: perl(XML::SAX)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Carp)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Tree::DAG_Node)
+BuildRequires:	perl(XML::Filter::BufferText)
+BuildRequires:	perl(XML::SAX)
+BuildArch:	noarch
 
 %description
 This module allows you to validate XML documents against a W3C XML Schema.
@@ -35,24 +35,37 @@ recommeded!
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
-%{make}
+%__perl Makefile.PL INSTALLDIRS=vendor
+%make
 
 %check
-%{make} test
+%make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc README Changes
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
+
+%changelog
+* Sun Jan 22 2012 Oden Eriksson <oeriksson@mandriva.com> 1.100.0-4mdv2012.0
++ Revision: 765856
+- rebuilt for perl-5.14.2
+
+* Sat Jan 21 2012 Oden Eriksson <oeriksson@mandriva.com> 1.100.0-3
++ Revision: 764391
+- rebuilt for perl-5.14.x
+
+* Sun Apr 17 2011 Funda Wang <fwang@mandriva.org> 1.100.0-2
++ Revision: 654347
+- rebuild for updated spec-helper
+
+* Thu Jan 14 2010 Jérôme Quelin <jquelin@mandriva.org> 1.100.0-1mdv2011.0
++ Revision: 491161
+- import perl-XML-Validator-Schema
 
 
+* Thu Jan 14 2010 cpan2dist 1.10-1mdv
+- initial mdv release, generated with cpan2dist
