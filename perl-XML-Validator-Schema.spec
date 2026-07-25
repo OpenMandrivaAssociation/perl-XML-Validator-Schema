@@ -3,12 +3,12 @@
 
 Summary:	Validate XML with a subset of W3C XML Schema
 Name:		perl-%{modname}
-Version:	%perl_convert_version %{modver}
-Release:	20
+Version:	%{modver}
+Release:	21
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
-Url:		https://search.cpan.org/dist/%{modname}
-Source0:	http://www.cpan.org/modules/by-module/XML/%{modname}-%{modver}.tar.gz
+Url:		https://metacpan.org/dist/XML-Validator-Schema
+Source0:	https://cpan.metacpan.org/authors/id/S/SA/SAMTREGAR/XML-Validator-Schema-%{modver}.tar.gz
 BuildArch:	noarch
 BuildRequires:	make
 BuildRequires:	perl-devel
